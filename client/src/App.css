@@ -7,3 +7,7 @@ button {
   margin-right: 20px;
   margin-bottom: 50px;
 }
+
+.btn-sm {
+  margin: 0;
+}

@@ -36,6 +36,21 @@ app.post("/data", function (req, res) {
   res.send();
 })
 
+app.delete("/delete/:id", function (req, res) {
+  console.log(req.params.id);
+  Mahasiswa.deleteOne(
+    {_id: req.params.id},
+    function(err){
+        if (!err) {
+            res.send("Successfully deleted");
+        } else{
+            res.send(err);
+        }
+    }
+)
+
+})
+
 app.listen(5000, function () {
   console.log("Server started on port 5000");
 });

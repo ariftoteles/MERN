@@ -32,38 +32,56 @@ function App (){
       });
     }
 
-    function handleGet (event){
+    function getData() {
       const url = 'http://localhost:5000/data';
       axios.get(url)
       .then((collections) => {
-        setItems(collections.data) 
-      })
+        setItems(collections.data) ;
+        console.log(collections.data);
+      });
+    }
+
+    function handleGet (event){
+      getData();
       event.preventDefault();
-      // console.log(collections.data);
+    }
+
+    function handleDelete (event){
+      const id = event.target.id;
+      const url = `http://localhost:5000/delete/${id}`;
+      axios.delete(url)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      getData();
     }
     
     return (
       <div className="container">
         <form>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Nama</label>
-            <input class="form-control" onChange={contentChange} name="nama" placeholder="Nama Anda"
+          <div className="form-group">
+            <label>Nama</label>
+            <input className="form-control" onChange={contentChange} name="nama" placeholder="Nama Anda"
               value={Content.nama} />
           </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">IPK</label>
-            <input class="form-control" onChange={contentChange} name="ipk" placeholder="IPK Anda"
+          <div className="form-group">
+            <label>IPK</label>
+            <input className="form-control" onChange={contentChange} name="ipk" placeholder="IPK Anda"
               value={Content.ipk} />
           </div>
-          <button onClick={handlePost} class="btn btn-primary">Tambah</button>
-          <button onClick={handleGet}class="btn btn-primary">Lihat</button>
+          <button onClick={handlePost} className="btn btn-primary">Tambah</button>
+          <button onClick={handleGet}className="btn btn-primary">Lihat</button>
         </form>
 
         <ul className="list-group">
           {
           items.map((item, index) => (
-          <li className="list-group-item d-flex justify-content-between align-items-center" key={index}>{item.nama}
-            <span class="badge badge-primary badge-pill">{item.ipk}</span>
+          <li className="list-group-item d-flex justify-content-between align-items-center" key={item._id}>{item.nama}
+            <span className="badge badge-primary badge-pill">{item.ipk}</span>
+            <button id={item._id} className="btn btn-outline-danger btn-sm" onClick={handleDelete}>Delete</button>
           </li>
           ))
           }
