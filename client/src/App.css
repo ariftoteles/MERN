@@ -1,0 +1,9 @@
+.container {
+  margin: 50px auto;
+  max-width: 50%;
+}
+
+button {
+  margin-right: 20px;
+  margin-bottom: 50px;
+}
