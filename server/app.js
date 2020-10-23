@@ -44,10 +44,14 @@ app.post("/data", function (req, res) {
     nama: req.body.nama,
     ipk: req.body.ipk
   });
-  newData.save(function (err) {
-    if (err) return handleError(err);
-  });
-  res.send();
+  if (newData.nama === "" | newData.ipk === ""){
+    res.send("Data undefined")
+  } else {
+    newData.save(function (err) {
+      if (err) return handleError(err);
+    });
+    res.send();
+  }
 })
 
 app.delete("/delete/:id", function (req, res) {
