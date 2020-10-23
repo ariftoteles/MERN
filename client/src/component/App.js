@@ -43,7 +43,8 @@ function App() {
     modalContent={modalContent} 
     modal={modal} 
     setModal={setModal} 
-    setModalContent={setModalContent} />
+    setModalContent={setModalContent}
+    getData={getData} />
   </div>
     )
 }
