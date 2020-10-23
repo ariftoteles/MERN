@@ -2,6 +2,7 @@ import React from "react";
 import axios from 'axios';
 
 function List(props) {
+
   function handleDelete(event) {
     const id = event.target.id;
     const url = `http://localhost:5000/delete/${id}`;
